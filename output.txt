@@ -1,0 +1,24 @@
+find
+被访问过的节点:
+A A A A A A A A A A 
+A A # # # # # # # A 
+# A A A A A # A A # 
+A A A A A # A A A A 
+# A A A # A A A A A 
+A A A A A A A A A A 
+# A # A A # A A A A 
+A A A A A A A A A A 
+A A A A A # A A A A 
+A A A A A A A A . D 
+
+最短路径:
+S * . . . . . . . . 
+. * # # # # # # # . 
+# * * * . . # . . # 
+. . . * . # . . . . 
+# . . * # . . . . . 
+. . . * * * * * * * 
+# . # . . # . . . * 
+. . . . . . . . . * 
+. . . . . # . . . * 
+. . . . . . . . . * 

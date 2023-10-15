@@ -94,10 +94,9 @@ void Dijkstra()
     {
         if (OpenList.find(e.index) != OpenList.end())
         {
-            cout<<"find"<<endl;
+            cout << "find" << endl;
             return;
         }
-            
 
         // 遍历开放列表，找到 dis 的值最小的节点
         int min_f = INF;
@@ -118,25 +117,28 @@ void Dijkstra()
 
         for (int j = 0; j < 4; j++)
         {
-            Node n_near = node[CoordinatesToindex(node[n_ind].x + directions[j][1], node[n_ind].y + directions[j][0])];
-            if (CloseList.find(n_near.index) != CloseList.end() || !isValidNode(n_near.x, n_near.y))
+            int n_near_x = node[n_ind].x + directions[j][1];
+            int n_near_y = node[n_ind].y + directions[j][0];
+            int n_near_ind = CoordinatesToindex(n_near_x, n_near_y);
+            if (!isValidNode(n_near_x, n_near_y) || CloseList.find(n_near_ind) != CloseList.end())
                 ;
             // 节点没有访问过
-            else if (OpenList.find(n_near.index) == OpenList.end())
+            else if (OpenList.find(n_near_ind) == OpenList.end())
             {
                 // 加入开放列表
-                OpenList.insert(n_near.index);
+                OpenList.insert(n_near_ind);
                 // 更新 dis 数组
-                dis[n_near.index] = dis[n.index] + 1;
+                dis[n_near_ind] = dis[n.index] + 1;
                 // 将 n 设为 n_near 的父结点
-                node[n_near.index].father = n.index;
+                node[n_near_ind].father = n.index;
             }
-            else
+            // 节点已经访问过，但是没有找到最短的路径
+            else if (OpenList.find(n_near_ind) != OpenList.end())
             {
-                if (dis[n.index] + 1 < dis[n_near.index])
+                if (dis[n.index] + 1 < dis[n_near_ind])
                 {
-                    dis[n_near.index] = dis[n.index] + 1;
-                    node[n_near.index].father = n.index;
+                    dis[n_near_ind] = dis[n.index] + 1;
+                    node[n_near_ind].father = n.index;
                 }
             }
         }
@@ -162,7 +164,7 @@ void init()
 
     dis[0] = 0;
 
-    for (int i = 0; i < m*m; i++)
+    for (int i = 0; i < m * m; i++)
     {
         node[i].index = i;
         node[i].x = indexToCoordinates(i).first;
@@ -220,8 +222,8 @@ int main()
     cin.tie(0);
 #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
-    // freopen("output.txt", "w", stdout);
+    freopen("output.txt", "w", stdout);
 #endif
     solve();
-    cout<<"";
+    cout << "";
 }
