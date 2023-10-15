@@ -239,7 +239,7 @@ void solve()
 			if (path.find(CoordinatesToindex(i, j)) == path.end())
 				cout << mp[i][j]<<' ';
 			else
-				cout << '%'<<' ';
+				cout << '*'<<' ';
 		}
 		cout << endl;
 	}
@@ -250,7 +250,7 @@ int main()
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 #ifndef ONLINE_JUDGE
-	freopen("/Applications/CppRunner.app/Contents/Resources/cpp/input.txt", "r", stdin);
+	freopen("input.txt", "r", stdin);
 #endif
 	solve();
 }
